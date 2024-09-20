@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const {useState} = React;
+
+        function Buttons() {
+            
+            const [countNum, setCountNum] = useState(0);
+            const [color, setColor] = useState("black");
+
+            const onClickIncrease = () => setCountNum(countNum + 1);
+            const onClickDecrease = () => setCountNum(countNum - 1);
+            const changeColor = (newColor) => setColor(newColor);
+
+            return (
+                <>
+                    <div>
+                        <button onClick={onClickIncrease}>+1</button>
+                        <button onClick={onClickDecrease}>-1</button>
+                        <button onClick={() => changeColor("blue")}>Blue</button>
+                        <button onClick={() => changeColor("green")}>Green</button>
+                        <button onClick={() => changeColor("orange")}>Orange</button>
+                    </div>
+
+                    <h1>
+                        Number : <span style={{color:color}}>{countNum}</span>
+                    </h1>
+                </>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<Buttons/>);
+    </script>
+    
+</body>
+</html>

@@ -26,7 +26,15 @@
         // 2. && 연산자를 이용하여 조건부 엘리먼트 생성 (조건이 맞을때만)
         const element = (answer === 1) && <h1>앞으로 점점 더 재밌어질 거에요</h1>;
         root.render(element);
+
+        // 3-2. 삼항 연산자로 조건부 엘리먼트 생성하디
+        const element2 = (answer === 1) ? <h1>앞으로 점점 더 재밌어질 거에요</h1>
+                                        : <h1>천천히 앞의 내용을 복습 해보세요</h1>;
+
+        root.render(element2);
     </script>
+
+    
     
 </body>
 </html>
