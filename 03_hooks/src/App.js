@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import UseEffectBasic from "./01_useEffect/01_useEffct-basic";
 import UseEffectMount from "./01_useEffect/02_useEffect-mount";
 import UseEffectUpdate from "./01_useEffect/03_useEffect-update";
 import Timer, { Container } from "./01_useEffect/04_useEffect-cleanup";
-import TimerList from "./component/TimerList";
-import ProfileForm from "./component/ProfileForm";
-import ProfilePreview from "./component/ProfilePreview";
+import TimerList from "./component/timer/TimerList";
+import ProfileForm from "./component/profileCal/ProfileForm";
+import ProfilePreview from "./component/profileCal/ProfilePreview";
+import UseReducerBasic from "./02_useReducer/01_useReducer-basic";
+import ReducerFormControl from "./02_useReducer/02_reducer-form-control";
+import Counter from "./component/counterText/Counter";
+import InputText from "./component/counterText/InputText";
+import HardCalculator from "./03_useMemo/01_hard-calculator";
+import ComplexCalculator from "./03_useMemo/02_complex-calculator";
+import UseMemoComponent from "./03_useMemo/03_performance-useMemo";
+import LocationComponent from "./03_useMemo/04_object-type-problem";
+import SquareCalculator from "./component/profileCal/SquareCalculator";
+import ProductPage from "./component/product/ProductPage";
 
 function App() {
   const [timers, setTimers] = useState([]);
@@ -31,6 +41,23 @@ function App() {
     setProfile({name: '', email: ''});
   };
 
+  const initialState = {counter : 0, text : ''};
+
+  function reducer(state,action) {
+    switch(action.type) {
+      case 'INCREMENT' :
+        return {...state, counter : state.counter +1};
+      case 'DECREMENT' :
+        return {...state, counter : state.counter -1};
+      case 'SETTEXT' : 
+        return {...state, text : action.payload};
+      default :
+        return state;
+    }
+  }
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+
 
   return (
     <>
@@ -38,11 +65,31 @@ function App() {
       {/* <UseEffectMount/> */}
       {/* <UseEffectUpdate/> */}
       {/* <Container/> */}
-      <button onClick={addTimer}>타이머 추가</button>
+
+      {/* <button onClick={addTimer}>타이머 추가</button>
       <TimerList timers={timers} deleteTimer={deleteTimer} />
       <br/>
       <ProfileForm profile={profile} updateProfile={updateProfile} saveProfile={saveProfile}/>
-      <ProfilePreview profile={savedProfile}/>
+      <ProfilePreview profile={savedProfile}/> */}
+
+      {/* <UseReducerBasic/> */}
+
+      {/* <ReducerFormControl/> */}
+
+      {/* <Counter counter={state.counter} 
+      onIncrement={()=> dispatch({type: 'INCREMENT'})}
+      onDecrement={()=> dispatch({type: 'DECREMENT'})}
+      />
+      <InputText text={state.text} 
+      onChangeText={(text)=> dispatch({type: 'SETTEXT', payload:text})} /> */}
+
+      {/* <HardCalculator/> */}
+      {/* <ComplexCalculator/> */}
+      {/* <UseMemoComponent/> */}
+      {/* <LocationComponent/> */}
+      {/* <SquareCalculator/> */}
+
+      <ProductPage/>
     </>
   );
 }
