@@ -16,7 +16,6 @@ function ProductPage() {
                             : products.filter(products => 
                                 products.category === category);
 
-                                console.log(products);
 
 
     return (
