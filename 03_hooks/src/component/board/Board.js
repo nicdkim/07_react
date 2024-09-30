@@ -18,7 +18,7 @@ function Board() {
       id: id,
       title,
       content,
-      comment: [],
+      comment: []
     };
     
     setPosts([...posts, newPost]);
@@ -29,6 +29,16 @@ function Board() {
 
   const handleDelete = (id) => {
     setPosts(posts.filter((post) => post.id !== id));
+  };
+
+  const handleAddComment = (postId, newComment) => {
+    setPosts(posts.map((post) => {
+      if (post.id === postId) {
+        const updatedComments = Array.isArray(post.comments) ? [...post.comments, newComment] : [newComment];
+        return { ...post, comments: updatedComments };
+      }
+      return post;
+    }));
   };
 
   const handleSearch = (e) => {
@@ -48,15 +58,15 @@ function Board() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <br />
+      <br/>
       <textarea
         placeholder="내용"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <br />
+      <br/>
       <button onClick={handlePost}>게시</button>
-      <br />
+      <br/>
       <input
         type="text"
         placeholder="검색"
@@ -65,7 +75,12 @@ function Board() {
       />
       <ul>
         {filteredPosts.map((post) => (
-          <Post key={post.id} post={post} onDelete={handleDelete} />
+          <Post 
+            key={post.id}
+            post={post}
+            onDelete={handleDelete}
+            onAddComment={handleAddComment}
+          />
         ))}
       </ul>
     </div>

@@ -4,6 +4,7 @@ import EmojiContainer from "./02_api/04_github-emoji";
 import Container from "./03_data-component/01_rendering-component";
 import Weather from "./03_data-component/02_weather-promise";
 import WeatherAwait from "./03_data-component/03_weater-await";
+import KakaoNavi from "./03_data-component/component/KakaoNavi";
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
       {/* <EmojiContainer/> */}
       {/* <Container/> */}
       {/* <Weather/> */}
-      <WeatherAwait/>
+      {/* <WeatherAwait/> */}
+      {/* <KakaoNavi/> */}
     </>
   );
 }

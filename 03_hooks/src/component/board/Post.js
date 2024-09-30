@@ -1,40 +1,41 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-function Post({post, onDelete}) {
-    
-    const [comment, setComment] = useState("");
-    const [comments, setComments] = useState(post.comments || []);
+function Post({ post, onDelete, onAddComment }) {
+  const [comment, setComment] = useState("");
 
-    const handleComment = () => {
-        if(comment.trim() !== "") {
-            setComments([...comments, comment]);
-            setComment("");
-        }
-    };
+  const handleComment = () => {
+    if (comment.trim() !== "") {
+      onAddComment(post.id, comment);
+      setComment("");
+    }
+  };
 
-    return (
-        <li>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <button onClick={()=> onDelete(post.id)}>삭제</button>
+  const comments = Array.isArray(post.comments) ? post.comments : [];
 
-            <div>
-                <textarea
-                placeholder="댓글 작성"
-                value={comment}
-                onChange={(e)=> setComment(e.target.value)}
-                />
+  return (
+    <li>
+      <h3>{post.title}</h3>
+      <p>{post.content}</p>
+      <button onClick={() => onDelete(post.id)}>삭제</button>
 
-                <br/>
-                <button onClick={handleComment}>댓글 달기</button>
-                <ul>
-                    {comments.map((cmt, index) => (
-                        <li key={index}>{cmt}</li>
-                    ))}
-                </ul>
-            </div>
-        </li>
-    )
+      <div>
+        <textarea
+          placeholder="댓글 작성"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <br />
+        <button onClick={handleComment}>댓글 달기</button>
+        {comments.length > 0 && (
+        <ul>
+            {comments.map((cmt, index) => (
+            <li key={index}>{cmt}</li>
+            ))}
+        </ul>
+        )}
+      </div>
+    </li>
+  );
 }
 
 export default Post;
