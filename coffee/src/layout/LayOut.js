@@ -7,7 +7,7 @@ function LayOut() {
       <ul>
         <li><NavLink to="/main">홈</NavLink></li>
         <li><NavLink to="/menu">메뉴</NavLink></li>
-        <li><NavLink to="/order-confirmation">주문 확인</NavLink></li>
+        <li><NavLink to="/ordered">주문 확인</NavLink></li>
       </ul>
       <div>
         <Outlet />

@@ -7,7 +7,7 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import { useState } from "react";
 
 function App() {
-  const [cart, setCart] = useState([]); // cart와 setCart 상태 관리
+  const [cart, setCart] = useState([]);
 
   return (
     <BrowserRouter>
@@ -16,7 +16,7 @@ function App() {
           <Route path="main" element={<Main />} />
           <Route path="menu" element={<Menu cart={cart} setCart={setCart} />} />
           <Route path="menu/:menuCode" element={<MenuDetail cart={cart} setCart={setCart} />} />
-          <Route path="order-confirmation" element={<OrderConfirmation cart={cart} />} />
+          <Route path="ordered" element={<OrderConfirmation cart={cart} />} />
         </Route>
       </Routes>
     </BrowserRouter>

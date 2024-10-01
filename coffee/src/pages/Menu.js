@@ -12,7 +12,7 @@ const Menu = () => {
   }, []);
 
   const handleOrder = () => {
-    navigate("/order-confirmation");
+    navigate("/ordered");
   };
 
   return (
